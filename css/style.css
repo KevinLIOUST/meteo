@@ -12,7 +12,13 @@ main div h1 {
     font-size: 4rem;
 }
 
+/* La couleur du bouton */
 .colorBtn {
     background-color: rgb(67, 69, 176);
     font-size: large;
+}
+
+/* Quand on passe la souris sur le boutons */
+.btn:hover {
+    background-color: rgb(57, 59, 111);
 }
