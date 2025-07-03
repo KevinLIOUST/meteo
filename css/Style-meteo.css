@@ -7,6 +7,13 @@ body {
   background-color: rgb(255, 255, 255);
 }
 
+/* Pour les informations en détails de la météo */
+.infos-meteo {
+  width: 80%;
+  height: auto;
+  background-color: rgb(173, 189, 213);
+}
+
 /* Pour le design d'un graphique qui montre l'évolution de la température en fonction des 5 jours suivants */
 /* Source : https://blog.crea-troyes.fr/3101/tutoriel-pour-creer-un-diagramme-en-courbe-avec-html-et-css/ */
 
