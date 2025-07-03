@@ -1,0 +1,112 @@
+/* Police décriture */
+@import url('https://fonts.googleapis.com/css2?family=Delius&family=Delius+Swash+Caps&family=Delius+Unicase:wght@400;700&display=swap');
+
+/* La même police d'écriture pour toute la page */
+body {
+  font-family: Delius;
+  background-color: rgb(255, 255, 255);
+}
+
+/* Pour le design d'un graphique qui montre l'évolution de la température en fonction des 5 jours suivants */
+/* Source : https://blog.crea-troyes.fr/3101/tutoriel-pour-creer-un-diagramme-en-courbe-avec-html-et-css/ */
+
+/* Pour l'entourage du graphique */
+.chart-container {
+  width: 95%;
+  height: 400px;
+  margin: 0 auto;
+}
+.chart {
+  position: relative;
+  width: 95%;
+  height: 400px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  margin: 0 auto;
+}
+
+/* Pour dessiner les lignes sur le graphique (horizontales, les points et la courbe) */
+.line-chart {
+  width: 95%;
+  height: calc(100% - 20px);
+}
+
+/* Pour l'axe des images (y) pour la température */
+.y-axis {
+  position: absolute;
+  top: 20px;
+  bottom: 30px;
+  left: 0;
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Pour les valeurs de l'axe des images (y) pour la température */
+.y-tick {
+  text-align: right;
+  font-size: 12px;
+  padding-right: 5px;
+  font-weight: bold;
+  color: #999;
+}
+
+/* Pour l'axe des abscisses (x) pour les jours de la semaine */
+.x-axis {
+  position: absolute;
+  bottom: 5px;
+  left: 70px;
+  right: 40px;
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Pour les valeurs de l'axe des abscisses (x) pour les jours de la semaines */
+.x-tick {
+  font-size: 12px;
+  text-align: center;
+  font-weight: bold;
+  color: #999;
+}
+
+/* La couleur du bouton */
+.colorBtn {
+  width: 20%;
+  height: auto;
+  background-color: rgb(67, 69, 176);
+  font-size: 0.8rem;
+}
+
+/* Quand on passe la souris sur le boutons */
+.btn:hover {
+  background-color: rgb(57, 59, 111);
+}
+
+/* Taille du texte pour la signification des boutons */
+.taille-texte {
+  font-size: small;
+}
+
+/* Taille du texte dans le bouton */
+.taille-texte-btn {
+  font-size: 0.6rem;
+}
+
+/* Taille des icônes dans les boutons */
+.taille-icon-btn {
+  font-size: large;
+}
+
+/* Pour scroller de manière horizontale pour les boutons pour afficher les diférentes météos des jours suivants */
+.scroller {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  height: auto;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-color: rgb(67, 69, 176) green;
+  /* scrollbar-width: thin; */
+}

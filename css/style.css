@@ -9,16 +9,16 @@ body {
 
 /* La taille du titre de la page */
 main div h1 {
-    font-size: 4rem;
+  font-size: 4rem;
 }
 
 /* La couleur du bouton */
 .colorBtn {
-    background-color: rgb(67, 69, 176);
-    font-size: large;
+  background-color: rgb(67, 69, 176);
+  font-size: small;
 }
 
 /* Quand on passe la souris sur le boutons */
 .btn:hover {
-    background-color: rgb(57, 59, 111);
+  background-color: rgb(57, 59, 111);
 }

@@ -1,11 +1,163 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Météo !!!!</title>
-  </head>
-  <body>
-    <p>Coucou !!!!</p>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Météo !!!!</title>
+
+  <!-- Lien vers Bootstrap -->
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+  <!-- Lien vers les icônes Bootstrap -->
+  <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
+
+  <!-- Lien pour utiliser JavaScript pour les actions de l'utilisateur -->
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+    crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="css/Style-meteo.css" />
+</head>
+
+<body>
+  <header class="mb-5">
+    <div class="d-flex justify-content-center">
+      <i class="bi bi-geo-alt fs-1" id="localisation">Localisation</i>
+    </div>
+    <div class="d-flex justify-content-center">
+      <p id="date">Date</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="d-flex justify-content-center">
+      <p id="temperature">Température</p>
+    </div>
+    <div class="d-flex justify-content-center mb-5">
+      <p>météo (nuages, pluie, etc...)</p>
+    </div>
+    <div class="chart-container mb-3">
+
+      <div class="chart">
+
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="line-chart">
+
+          <!-- Lignes de fond -->
+          <line x1="0" y1="7.5" x2="100" y2="7.5" stroke="#f1f1f1" stroke-width="0.5" />
+          <line x1="0" y1="20" x2="100" y2="20" stroke="#f1f1f1" stroke-width="0.5" />
+          <line x1="0" y1="32.5" x2="100" y2="32.5" stroke="#f1f1f1" stroke-width="0.5" />
+          <line x1="0" y1="45" x2="100" y2="45" stroke="#f1f1f1" stroke-width="0.5" />
+          <line x1="0" y1="57.5" x2="100" y2="57.5" stroke="#f1f1f1" stroke-width="0.5" />
+          <line x1="0" y1="70" x2="100" y2="70" stroke="#f1f1f1" stroke-width="0.5" />
+          <line x1="0" y1="82.5" x2="100" y2="82.5" stroke="#f1f1f1" stroke-width="0.5" />
+          <line x1="0" y1="95" x2="100" y2="95" stroke="#f1f1f1" stroke-width="0.5" />
+
+          <!-- Courbe -->
+          <polyline fill="none" stroke="#0077cc" stroke-width="0.7"
+            points="13,70 24.5,40 36,55 47.5,35 59,45 70.5,35 81.5,50 93,20" id="courbe" />
+
+          <!-- Points clés -->
+          <circle cx="13" cy="69.8" r="0.8" fill="#34a853" id="point1" />
+          <circle cx="24.5" cy="40" r="0.8" fill="#34a853" id="point2" />
+          <circle cx="36" cy="55" r="0.8" fill="#34a853" id="point3" />
+          <circle cx="47.5" cy="35" r="0.8" fill="#34a853" id="point4" />
+          <circle cx="59" cy="45" r="0.8" fill="#34a853" id="point5" />
+          <circle cx="70.5" cy="35" r="0.8" fill="#34a853" id="point6" />
+          <circle cx="81.5" cy="50" r="0.8" fill="#34a853" id="point7" />
+          <circle cx="93" cy="20" r="0.8" fill="#34a853" id="point8" />
+        </svg>
+
+        <!-- Axe horizontal : Abscisse -->
+        <div class="y-axis">
+          <div class="y-tick">35</div>
+          <div class="y-tick">30</div>
+          <div class="y-tick">25</div>
+          <div class="y-tick">20</div>
+          <div class="y-tick">15</div>
+          <div class="y-tick">10</div>
+          <div class="y-tick">5</div>
+          <div class="y-tick">0</div>
+        </div>
+
+        <!-- Axe horizontal : Ordonnée -->
+        <div class="x-axis">
+          <div class="x-tick">Lun</div>
+          <div class="x-tick">Mar</div>
+          <div class="x-tick">Mer</div>
+          <div class="x-tick">Jeu</div>
+          <div class="x-tick">Ven</div>
+          <div class="x-tick">Sam</div>
+          <div class="x-tick">Dim</div>
+        </div>
+
+      </div>
+
+    </div>
+    <p class="text-center m-3 taille-texte">Vous pouvez visualiser la météo des jours suivants plus en détails en
+      cliquant sur les
+      boutons si-dessous</p>
+    <div class="d-flex justify-content-center scroller">
+      <button type="button" class="d-flex justify-content-center btn colorBtn rounded-4 p-2 ms-3 mx-3 text-white">
+        <div>
+          <p class="taille-texte-btn">Lun</p>
+          <i class="bi bi-sun taille-icon-btn"></i>
+          <p class="taille-texte-btn">température max</p>
+          <p class="taille-texte-btn">température min</p>
+        </div>
+      </button>
+      <button type="button" class="d-flex justify-content-center btn colorBtn rounded-4 p-2 ms-3 mx-3 text-white">
+        <div>
+          <p class="taille-texte-btn">Lun</p>
+          <i class="bi bi-sun taille-icon-btn"></i>
+          <p class="taille-texte-btn">température max</p>
+          <p class="taille-texte-btn">température min</p>
+        </div>
+      </button>
+      <button type="button" class="d-flex justify-content-center btn colorBtn rounded-4 p-2 ms-3 mx-3 text-white">
+        <div>
+          <p class="taille-texte-btn">Lun</p>
+          <i class="bi bi-sun taille-icon-btn"></i>
+          <p class="taille-texte-btn">température max</p>
+          <p class="taille-texte-btn">température min</p>
+        </div>
+      </button>
+      <button type="button" class="d-flex justify-content-center btn colorBtn rounded-4 p-2 ms-3 mx-3 text-white">
+        <div>
+          <p class="taille-texte-btn">Lun</p>
+          <i class="bi bi-sun taille-icon-btn"></i>
+          <p class="taille-texte-btn">température max</p>
+          <p class="taille-texte-btn">température min</p>
+        </div>
+      </button>
+      <button type="button" class="d-flex justify-content-center btn colorBtn rounded-4 p-2 ms-3 mx-3 text-white">
+        <div>
+          <p class="taille-texte-btn">Lun</p>
+          <i class="bi bi-sun taille-icon-btn"></i>
+          <p class="taille-texte-btn">température max</p>
+          <p class="taille-texte-btn">température min</p>
+        </div>
+      </button>
+      <button type="button" class="d-flex justify-content-center btn colorBtn rounded-4 p-2 ms-3 mx-3 text-white">
+        <div>
+          <p class="taille-texte-btn">Lun</p>
+          <i class="bi bi-sun taille-icon-btn"></i>
+          <p class="taille-texte-btn">température max</p>
+          <p class="taille-texte-btn">température min</p>
+        </div>
+      </button>
+      <button type="button" class="d-flex justify-content-center btn colorBtn rounded-4 p-2 ms-3 mx-3 text-white">
+        <div>
+          <p class="taille-texte-btn">Lun</p>
+          <i class="bi bi-sun taille-icon-btn"></i>
+          <p class="taille-texte-btn">température max</p>
+          <p class="taille-texte-btn">température min</p>
+        </div>
+      </button>
+    </div>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+
 </html>
