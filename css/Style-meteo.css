@@ -1,5 +1,5 @@
 /* Police décriture */
-@import url('https://fonts.googleapis.com/css2?family=Delius&family=Delius+Swash+Caps&family=Delius+Unicase:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Delius&family=Delius+Swash+Caps&family=Delius+Unicase:wght@400;700&display=swap");
 
 /* La même police d'écriture pour toute la page */
 body {
@@ -7,11 +7,16 @@ body {
   background-color: rgb(255, 255, 255);
 }
 
+/* Taille du texte pour la température du jour */
+.taille-texte-temperature {
+  font-size: 60px;
+}
+
 /* Pour les informations en détails de la météo */
 .infos-meteo {
   width: 80%;
   height: auto;
-  background-color: rgb(173, 189, 213);
+  background-color: rgb(213, 224, 239);
 }
 
 /* Pour le design d'un graphique qui montre l'évolution de la température en fonction des 5 jours suivants */
@@ -78,17 +83,17 @@ body {
   color: #999;
 }
 
-/* La couleur du bouton */
+/* La couleur du bouton, sa taille */
 .colorBtn {
-  width: 20%;
+  width: auto;
   height: auto;
-  background-color: rgb(67, 69, 176);
+  background-color: rgb(161, 162, 233);
   font-size: 0.8rem;
 }
 
 /* Quand on passe la souris sur le boutons */
 .btn:hover {
-  background-color: rgb(57, 59, 111);
+  background-color: rgb(136, 138, 198);
 }
 
 /* Taille du texte pour la signification des boutons */
@@ -96,9 +101,10 @@ body {
   font-size: small;
 }
 
-/* Taille du texte dans le bouton */
+/* Taille du texte dans le bouton plus taille du bouton */
 .taille-texte-btn {
-  font-size: 0.6rem;
+  width: 110px;
+  font-size: 0.7rem;
 }
 
 /* Taille des icônes dans les boutons */
@@ -106,14 +112,28 @@ body {
   font-size: large;
 }
 
-/* Pour scroller de manière horizontale pour les boutons pour afficher les diférentes météos des jours suivants */
-.scroller {
-  display: flex;
-  justify-content: center;
-  width: 90%;
+/* Taille des icônes dans les informations en détail de la météo */
+.taille-icon-infos-meteo {
+  font-size: xx-large;
+}
+
+/* Taille du texte dans les informations en détail de la météo */
+.taille-texte-infos-meteo {
+  font-size: 0.6rem;
+}
+
+/* Ajout de l'ombre sur les informations en détail de la météo */
+.shadow {
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+/* Pour le scroll à l'horizontal pour les boutons pour afficher la météo pour les 5 jours suivants */
+.wrapper {
+  width: auto;
   height: auto;
+  border: 1px solid #ddd;
+  display: flex;
   overflow-x: auto;
-  white-space: nowrap;
-  scrollbar-color: rgb(67, 69, 176) green;
-  /* scrollbar-width: thin; */
 }
