@@ -40,8 +40,8 @@
     <main>
       <div class="d-flex justify-content-center align-items-center">
         <p class="taille-texte-temperature m-3" id="temperature">Température</p>
-        <div class="d-block m-3">
-          <img src="img/Soleil.ico" alt="Soleil.ico">
+        <div class="d-block m-3" id="icon-meteo">
+          <img src="img/Soleil.ico" alt="Soleil.ico" />
           <p class="text-center" id="meteo">Ciel dégagé</p>
         </div>
       </div>
@@ -188,67 +188,7 @@
         cliquant sur les boutons si-dessous
       </p>
 
-      <div class="wrapper m-3">
-        <button
-          type="button"
-          class="d-flex justify-content-center btn colorBtn rounded-4 p-3 ms-1 mx-1 text-white"
-        >
-          <div>
-            <p class="taille-texte-btn" id="date-lundi">Lundi</p>
-            <i class="bi bi-sun taille-icon-btn"></i>
-            <p class="taille-texte-btn" id="temperature-max-lundi">température max</p>
-            <p class="taille-texte-btn" id="temperature-min-lundi">température min</p>
-          </div>
-        </button>
-
-        <button
-          type="button"
-          class="d-flex justify-content-center btn colorBtn rounded-4 p-3 ms-1 mx-1 text-white"
-        >
-          <div>
-            <p class="taille-texte-btn" id="date-mardi">Mardi</p>
-            <i class="bi bi-sun taille-icon-btn"></i>
-            <p class="taille-texte-btn" id="temperature-max-mardi">température max</p>
-            <p class="taille-texte-btn" id="temperature-min-mardi">température min</p>
-          </div>
-        </button>
-
-        <button
-          type="button"
-          class="d-flex justify-content-center btn colorBtn rounded-4 p-3 ms-1 mx-1 text-white"
-        >
-          <div>
-            <p class="taille-texte-btn" id="date-mercredi">Mercredi</p>
-            <i class="bi bi-sun taille-icon-btn"></i>
-            <p class="taille-texte-btn" id="temperature-max-mercredi">température max</p>
-            <p class="taille-texte-btn" id="temperature-min-mercredi">température min</p>
-          </div>
-        </button>
-
-        <button
-          type="button"
-          class="d-flex justify-content-center btn colorBtn rounded-4 p-3 ms-1 mx-1 text-white"
-        >
-          <div>
-            <p class="taille-texte-btn" id="date-jeudi">Jeudi</p>
-            <i class="bi bi-sun taille-icon-btn"></i>
-            <p class="taille-texte-btn" id="temperature-max-jeudi">température max</p>
-            <p class="taille-texte-btn" id="temperature-min-jeudi">température min</p>
-          </div>
-        </button>
-
-        <button
-          type="button"
-          class="d-flex justify-content-center btn colorBtn rounded-4 p-3 ms-1 mx-1 text-white"
-        >
-          <div>
-            <p class="taille-texte-btn" id="date-vendredi">Vendredi</p>
-            <i class="bi bi-sun taille-icon-btn"></i>
-            <p class="taille-texte-btn" id="temperature-max-vendredi">température max</p>
-            <p class="taille-texte-btn" id="temperature-min-vendredi">température min</p>
-          </div>
-        </button>
-      </div>
+      <div class="wrapper m-3" id="btns-jour"></div>
     </main>
 
     <script src="js/script.js"></script>
