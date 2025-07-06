@@ -1,6 +1,6 @@
 let city = "rouen";
 let apiKey = "379a99adac6672b321cbd6175e3c6efd";
-// let tabVilles = ["rouen", "caen", "paris"];
+let tabVilles = ["rouen", "caen", "paris"];
 let tabJoursSemaine = [
   "lundi",
   "mardi",
@@ -10,15 +10,15 @@ let tabJoursSemaine = [
   "samedi",
   "dimanche",
 ];
-let tabMeteos = [
-  "ciel dégagé",
-  "peu nuageux",
-  "partiellement nuageux",
-  "nuageux",
-  "couvert",
-  "légère pluie",
-];
-let tabJourNuit = ["Jour", "Nuit"];
+// let tabMeteos = [
+//   "ciel dégagé",
+//   "peu nuageux",
+//   "partiellement nuageux",
+//   "nuageux",
+//   "couvert",
+//   "légère pluie",
+// ];
+// let tabJourNuit = ["Jour", "Nuit"];
 
 let url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&lang=fr&units=metric`;
 
@@ -31,6 +31,47 @@ let url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${ap
 //     });
 // }
 // consoleloguerURL();
+
+// Fonction qui permet d'afficher les jours de la semaine en temps réel
+function afficherJoursSemaine() {
+
+  // Le tableau des jours pour faire référence à la fonction getDay();
+  const jours = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+
+  // On crée une nouvelle instance de Date pour l'utiliser pour afficher le jour de la semaine correspondant
+  const aujourdHui = new Date();
+
+  // Le tableau des jours de la semaine à afficher dynamiquement
+  const joursAffiches = [];
+
+  // On ajoute le jour d'aujourd'hui, puis les 4 jours suivants dans le tableau afficher
+  for (let i = 0; i <= 4; i++) {
+
+    // On recrée l'instance de la date avec celle de maintenant
+    const jour = new Date(aujourdHui);
+
+    // On modifie la date d'aujourd'hui par le jour suivant pour l'ajouter juste après dans le tableau
+    jour.setDate(aujourdHui.getDate() + i);
+
+    // On ajoute le jour suivant dans le tableau
+    joursAffiches.push(jours[jour.getDay()]);
+  }
+
+  // On nettoie la console pour un affichage en temps réel
+  console.clear();
+
+  // Affichage des jours de la semaine
+  console.log("Jours de la semaine :");
+  joursAffiches.forEach((jour, index) => {
+    console.log(`Jour ${index + 1}: ${jour}`);
+  });
+
+  // On retourne le nouveau tableau à afficher.
+  return joursAffiches;
+}
+
+// Met à jour l'affichage toutes les secondes
+setInterval(afficherJoursSemaine, 1000);
 
 // Fonction pour récupérer les données avec l'API pour la météo
 function recupererDonneesMeteo() {
@@ -53,7 +94,7 @@ function recupererDonneesMeteo() {
 
       if (
         json.list[0].weather[0].description == "ciel dégagé" &&
-        (parseInt(json.list[0].dt_txt.substring(11, 13)) >= 21 ||
+        (parseInt(json.list[0].dt_txt.substring(11, 13)) >= 18 ||
           parseInt(json.list[0].dt_txt.substring(12, 13)) < 6)
       ) {
         document.getElementById("meteo").innerText = "Ciel dégagé";
@@ -69,7 +110,7 @@ function recupererDonneesMeteo() {
         `;
       } else if (
         json.list[0].weather[0].description == "peu nuageux" &&
-        (parseInt(json.list[0].dt_txt.substring(11, 13)) >= 21 ||
+        (parseInt(json.list[0].dt_txt.substring(11, 13)) >= 18 ||
           parseInt(json.list[0].dt_txt.substring(12, 13)) < 6)
       ) {
         document.getElementById("meteo").innerText = "Peu nuageux";
@@ -85,7 +126,7 @@ function recupererDonneesMeteo() {
         `;
       } else if (
         json.list[0].weather[0].description == "partiellement nuageux" &&
-        (parseInt(json.list[0].dt_txt.substring(11, 13)) >= 21 ||
+        (parseInt(json.list[0].dt_txt.substring(11, 13)) >= 18 ||
           parseInt(json.list[0].dt_txt.substring(12, 13)) < 6)
       ) {
         document.getElementById("meteo").innerText = "Partiellement nuageux";
@@ -103,7 +144,7 @@ function recupererDonneesMeteo() {
         `;
       } else if (
         json.list[0].weather[0].description == "nuageux" &&
-        (parseInt(json.list[0].dt_txt.substring(11, 13)) >= 21 ||
+        (parseInt(json.list[0].dt_txt.substring(11, 13)) >= 18 ||
           parseInt(json.list[0].dt_txt.substring(12, 13)) < 6)
       ) {
         document.getElementById("meteo").innerText = "Nuageux";
@@ -119,7 +160,7 @@ function recupererDonneesMeteo() {
         `;
       } else if (
         json.list[0].weather[0].description == "couvert" &&
-        (parseInt(json.list[0].dt_txt.substring(11, 13)) >= 21 ||
+        (parseInt(json.list[0].dt_txt.substring(11, 13)) >= 18 ||
           parseInt(json.list[0].dt_txt.substring(12, 13)) < 6)
       ) {
         document.getElementById("meteo").innerText = "Couvert";
@@ -135,7 +176,7 @@ function recupererDonneesMeteo() {
         `;
       } else if (
         json.list[0].weather[0].description == "légère pluie" &&
-        (parseInt(json.list[0].dt_txt.substring(11, 13)) >= 21 ||
+        (parseInt(json.list[0].dt_txt.substring(11, 13)) >= 18 ||
           parseInt(json.list[0].dt_txt.substring(12, 13)) < 6)
       ) {
         document.getElementById("meteo").innerText = "Légère pluie";
@@ -160,6 +201,143 @@ function recupererDonneesMeteo() {
       document.getElementById("infos-meteo-vit-wind").innerText =
         json.list[0].wind.speed + " km/h";
 
+      const ctx = document.getElementById("meteoChart").getContext("2d");
+
+      new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: afficherJoursSemaine(),
+          datasets: [
+            {
+              label: "Température en °C",
+              data: [json.list[0].main.temp, json.list[8].main.temp, json.list[16].main.temp, json.list[24].main.temp, json.list[32].main.temp],
+              fill: {
+                target: 'origin',
+                above: 'rgba(131, 61, 223, 0.4)',
+              },
+              borderColor: [
+                'rgba(131, 61, 223, 0.65)'
+              ],
+              pointStyle: 'circle',
+              pointRadius: 10,
+              pointHoverRadius: 15
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            },
+          },
+        },
+      });
+
+      // Pour afficher les icônes sur les boutons en bas de page
+      // pour savoir en avance quel temps il fait pour les jours suivants à la même heure que maintenant
+      // let tabIconesBtn = [
+      //   "bi bi-sun",
+      //   "bi bi-moon",
+      //   "bi bi-cloud-drizzle",
+      //   "bi bi-cloud-lightning-rain",
+      //   "bi bi-cloud-rain-heavy",
+      //   "bi bi-cloud-sun",
+      //   "bi bi-cloud-moon",
+      //   "bi bi-cloud",
+      //   "bi bi-cloud-fog",
+      //   "bi bi-cloud-lightning"
+      // ];
+
+      // Fonction pour créer une balise i avec l'icône correspondant au temps qu'il fait dans les jours suivants à la même heure que maintenant
+      function createBaliseI(indice) {
+        if (
+          json.list[indice].weather[0].description == "ciel dégagé" &&
+          (parseInt(json.list[indice].dt_txt.substring(11, 13)) >= 18 ||
+            parseInt(json.list[indice].dt_txt.substring(12, 13)) < 6)
+        ) {
+          let baliseI = `
+          <i class="bi bi-sun taille-icon-btn" id="icon-btn-meteo"></i>
+          `;
+          return baliseI;
+        } else if (json.list[indice].weather[0].description == "ciel dégagé") {
+          let baliseI = `
+          <i class="bi bi-moon taille-icon-btn" id="icon-btn-meteo"></i>
+          `;
+          return baliseI;
+        } else if (
+          json.list[indice].weather[0].description == "peu nuageux" &&
+          (parseInt(json.list[indice].dt_txt.substring(11, 13)) >= 18 ||
+            parseInt(json.list[indice].dt_txt.substring(12, 13)) < 6)
+        ) {
+          let baliseI = `
+          <i class="bi bi-cloud-sun taille-icon-btn" id="icon-btn-meteo"></i>
+          `;
+          return baliseI;
+        } else if (json.list[indice].weather[0].description == "peu nuageux") {
+          let baliseI = `
+          <i class="bi bi-cloud-moon taille-icon-btn" id="icon-btn-meteo"></i>
+          `;
+          return baliseI;
+        } else if (
+          json.list[indice].weather[0].description == "partiellement nuageux" &&
+          (parseInt(json.list[indice].dt_txt.substring(11, 13)) >= 18 ||
+            parseInt(json.list[indice].dt_txt.substring(12, 13)) < 6)
+        ) {
+          let baliseI = `
+          <i class="bi bi-cloud-sun taille-icon-btn" id="icon-btn-meteo"></i>
+          `;
+          return baliseI;
+        } else if (json.list[indice].weather[0].description == "partiellement nuageux") {
+          let baliseI = `
+          <i class="bi bi-cloud-moon taille-icon-btn" id="icon-btn-meteo"></i>
+          `;
+          return baliseI;
+        } else if (
+          json.list[indice].weather[0].description == "nuageux" &&
+          (parseInt(json.list[indice].dt_txt.substring(11, 13)) >= 18 ||
+            parseInt(json.list[indice].dt_txt.substring(12, 13)) < 6)
+        ) {
+          let baliseI = `
+          <i class="bi bi-cloud-sun taille-icon-btn" id="icon-btn-meteo"></i>
+          `;
+          return baliseI;
+        } else if (json.list[indice].weather[0].description == "nuageux") {
+          let baliseI = `
+          <i class="bi bi-cloud-moon taille-icon-btn" id="icon-btn-meteo"></i>
+          `;
+          return baliseI;
+        } else if (
+          json.list[indice].weather[0].description == "couvert" &&
+          (parseInt(json.list[indice].dt_txt.substring(11, 13)) >= 18 ||
+            parseInt(json.list[indice].dt_txt.substring(12, 13)) < 6)
+        ) {
+          let baliseI = `
+          <i class="bi bi-cloud taille-icon-btn" id="icon-btn-meteo"></i>
+          `;
+          return baliseI;
+        } else if (json.list[indice].weather[0].description == "couvert") {
+          let baliseI = `
+          <i class="bi bi-cloud taille-icon-btn" id="icon-btn-meteo"></i>
+          `;
+          return baliseI;
+        } else if (
+          json.list[indice].weather[0].description == "légère pluie" &&
+          (parseInt(json.list[indice].dt_txt.substring(11, 13)) >= 18 ||
+            parseInt(json.list[indice].dt_txt.substring(12, 13)) < 6)
+        ) {
+          let baliseI = `
+          <i class="bi bi-cloud-drizzle taille-icon-btn" id="icon-btn-meteo"></i>
+          `;
+          return baliseI;
+        } else if (json.list[indice].weather[0].description == "légère pluie") {
+          let baliseI = `
+          <i class="bi bi-cloud-drizzle taille-icon-btn" id="icon-btn-meteo"></i>
+          `;
+          return baliseI;
+        }
+        console.log(baliseI);
+      }
+
       let indiceBtn = 0;
       for (let i = 0; i < json.list.length; i += 8) {
         document.getElementById("btns-jour").innerHTML += `
@@ -168,8 +346,8 @@ function recupererDonneesMeteo() {
           class="d-flex justify-content-center btn colorBtn rounded-4 p-3 ms-1 mx-1 text-white"
         >
           <div>
-            <p class="taille-texte-btn">${json.list[i].dt_txt}</p>
-            <i class="bi bi-sun taille-icon-btn" id="icon-btn-meteo"></i>
+            <p class="taille-texte-btn">${afficherJoursSemaine()[indiceBtn]}</p>
+            ${createBaliseI(i)}
             <p class="taille-texte-btn">${json.list[i].main.temp_max}</p>
             <p class="taille-texte-btn">${json.list[i].main.temp_min}</p>
           </div>
@@ -191,111 +369,6 @@ function recupererDonneesMeteo() {
 
       let jour = 0;
       for (let i = 0; i < json.list.length; i += 8) {
-        document.getElementById("date-" + tabJoursSemaine[jour]).innerText =
-          json.list[i].dt_txt;
-        jour++;
-      }
-
-      for (let i = 0; i < json.list.length; i += 8) {
-        if (
-          json.list[0].weather[0].description == "ciel dégagé" &&
-          (parseInt(json.list[0].dt_txt.substring(11, 13)) >= 21 ||
-            parseInt(json.list[0].dt_txt.substring(12, 13)) < 6)
-        ) {
-          document.getElementById("meteo").innerText = "Ciel dégagé";
-          document.getElementById("icon-meteo").innerHTML = `
-        <img src="img/Lune.ico" alt="Lune.ico">
-        <p class="text-center" id="meteo">Ciel dégagé</p>
-        `;
-        } else if (json.list[0].weather[0].description == "ciel dégagé") {
-          document.getElementById("meteo").innerText = "Ciel dégagé";
-          document.getElementById("icon-meteo").innerHTML = `
-        <img src="img/Soleil.ico" alt="Soleil.ico">
-        <p class="text-center" id="meteo">Ciel dégagé</p>
-        `;
-        } else if (
-          json.list[0].weather[0].description == "peu nuageux" &&
-          (parseInt(json.list[0].dt_txt.substring(11, 13)) >= 21 ||
-            parseInt(json.list[0].dt_txt.substring(12, 13)) < 6)
-        ) {
-          document.getElementById("meteo").innerText = "Peu nuageux";
-          document.getElementById("icon-meteo").innerHTML = `
-        <img src="img/Lune-Nuages.ico" alt="Lune-Nuages.ico">
-        <p class="text-center" id="meteo">peu nuageux</p>
-        `;
-        } else if (json.list[0].weather[0].description == "peu nuageux") {
-          document.getElementById("meteo").innerText = "Peu nuageux";
-          document.getElementById("icon-meteo").innerHTML = `
-        <img src="img/Soleil-Nuages.ico" alt="Soleil-Nuages.ico">
-        <p class="text-center" id="meteo">peu nuageux</p>
-        `;
-        } else if (
-          json.list[0].weather[0].description == "partiellement nuageux" &&
-          (parseInt(json.list[0].dt_txt.substring(11, 13)) >= 21 ||
-            parseInt(json.list[0].dt_txt.substring(12, 13)) < 6)
-        ) {
-          document.getElementById("meteo").innerText = "Partiellement nuageux";
-          document.getElementById("icon-meteo").innerHTML = `
-        <img src="img/Lune-Nuages.ico" alt="Lune-Nuages.ico">
-        <p class="text-center" id="meteo">Partiellement nuageux</p>
-        `;
-        } else if (
-          json.list[0].weather[0].description == "partiellement nuageux"
-        ) {
-          document.getElementById("meteo").innerText = "Partiellement nuageux";
-          document.getElementById("icon-meteo").innerHTML = `
-        <img src="img/Soleil-Nuages.ico" alt="Soleil-Nuages.ico">
-        <p class="text-center" id="meteo">Partiellement nuageux</p>
-        `;
-        } else if (
-          json.list[0].weather[0].description == "nuageux" &&
-          (parseInt(json.list[0].dt_txt.substring(11, 13)) >= 21 ||
-            parseInt(json.list[0].dt_txt.substring(12, 13)) < 6)
-        ) {
-          document.getElementById("meteo").innerText = "Nuageux";
-          document.getElementById("icon-meteo").innerHTML = `
-        <img src="img/Lune-Nuages.ico" alt="Lune-Nuages.ico">
-        <p class="text-center" id="meteo">Nuageux</p>
-        `;
-        } else if (json.list[0].weather[0].description == "nuageux") {
-          document.getElementById("meteo").innerText = "Nuageux";
-          document.getElementById("icon-meteo").innerHTML = `
-        <img src="img/Soleil-Nuages.ico" alt="Soleil-Nuages.ico">
-        <p class="text-center" id="meteo">Nuageux</p>
-        `;
-        } else if (
-          json.list[0].weather[0].description == "couvert" &&
-          (parseInt(json.list[0].dt_txt.substring(11, 13)) >= 21 ||
-            parseInt(json.list[0].dt_txt.substring(12, 13)) < 6)
-        ) {
-          document.getElementById("meteo").innerText = "Couvert";
-          document.getElementById("icon-meteo").innerHTML = `
-        <img src="img/Nuages.ico" alt="Nuages.ico">
-        <p class="text-center" id="meteo">Couvert</p>
-        `;
-        } else if (json.list[0].weather[0].description == "couvert") {
-          document.getElementById("meteo").innerText = "Couvert";
-          document.getElementById("icon-meteo").innerHTML = `
-        <img src="img/Nuages.ico" alt="Nuages.ico">
-        <p class="text-center" id="meteo">Couvert</p>
-        `;
-        } else if (
-          json.list[0].weather[0].description == "légère pluie" &&
-          (parseInt(json.list[0].dt_txt.substring(11, 13)) >= 21 ||
-            parseInt(json.list[0].dt_txt.substring(12, 13)) < 6)
-        ) {
-          document.getElementById("meteo").innerText = "Légère pluie";
-          document.getElementById("icon-meteo").innerHTML = `
-        <img src="img/Lune-Légère-Pluie.ico" alt="Lune-Légère-Pluie.ico">
-        <p class="text-center" id="meteo">Légère pluie</p>
-        `;
-        } else if (json.list[0].weather[0].description == "légère pluie") {
-          document.getElementById("meteo").innerText = "Légère pluie";
-          document.getElementById("icon-meteo").innerHTML = `
-        <img src="img/Soleil-Légère-Pluie.ico" alt="Soleil-Légère-Pluie.ico">
-        <p class="text-center" id="meteo">Légère pluie</p>
-        `;
-        }
         document.getElementById("date-" + tabJoursSemaine[jour]).innerText =
           json.list[i].dt_txt;
         jour++;

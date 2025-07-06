@@ -1,7 +1,7 @@
-const ctx = document.getElementById("myChart");
+const ctx = document.getElementById("myChart").getContext("2d");
 
-new Chart(ctx, {
-  type: "bar",
+const graphMeteoLine = new Chart(ctx, {
+  type: "line",
   data: {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
     datasets: [
