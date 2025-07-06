@@ -74,13 +74,13 @@ function recupererDonneesMeteo() {
       ) {
         document.getElementById("meteo").innerText = "Peu nuageux";
         document.getElementById("icon-meteo").innerHTML = `
-        <img src="img/Lune-Nuages.ico" alt="Lune-Nuages.ico">
+        <img src="img/Soleil-Nuages.ico" alt="Soleil-Nuages.ico">
         <p class="text-center" id="meteo">Peu nuageux</p>
         `;
       } else if (json.list[0].weather[0].description == "peu nuageux") {
         document.getElementById("meteo").innerText = "Peu nuageux";
         document.getElementById("icon-meteo").innerHTML = `
-        <img src="img/Soleil-Nuages.ico" alt="Soleil-Nuages.ico">
+        <img src="img/Lune-Nuages.ico" alt="Lune-Nuages.ico">
         <p class="text-center" id="meteo">Peu nuageux</p>
         `;
       } else if (
@@ -90,7 +90,7 @@ function recupererDonneesMeteo() {
       ) {
         document.getElementById("meteo").innerText = "Partiellement nuageux";
         document.getElementById("icon-meteo").innerHTML = `
-        <img src="img/Lune-Nuages.ico" alt="Lune-Nuages.ico">
+        <img src="img/Soleil-Nuages.ico" alt="Soleil-Nuages.ico">
         <p class="text-center" id="meteo">Partiellement nuageux</p>
         `;
       } else if (
@@ -98,7 +98,7 @@ function recupererDonneesMeteo() {
       ) {
         document.getElementById("meteo").innerText = "Partiellement nuageux";
         document.getElementById("icon-meteo").innerHTML = `
-        <img src="img/Soleil-Nuages.ico" alt="Soleil-Nuages.ico">
+        <img src="img/Lune-Nuages.ico" alt="Lune-Nuages.ico">
         <p class="text-center" id="meteo">Partiellement nuageux</p>
         `;
       } else if (
@@ -108,13 +108,13 @@ function recupererDonneesMeteo() {
       ) {
         document.getElementById("meteo").innerText = "Nuageux";
         document.getElementById("icon-meteo").innerHTML = `
-        <img src="img/Lune-Nuages.ico" alt="Lune-Nuages.ico">
+        <img src="img/Soleil-Nuages.ico" alt="Soleil-Nuages.ico">
         <p class="text-center" id="meteo">Nuageux</p>
         `;
       } else if (json.list[0].weather[0].description == "nuageux") {
         document.getElementById("meteo").innerText = "Nuageux";
         document.getElementById("icon-meteo").innerHTML = `
-        <img src="img/Soleil-Nuages.ico" alt="Soleil-Nuages.ico">
+        <img src="img/Lune-Nuages.ico" alt="Lune-Nuages.ico">
         <p class="text-center" id="meteo">Nuageux</p>
         `;
       } else if (
@@ -140,13 +140,13 @@ function recupererDonneesMeteo() {
       ) {
         document.getElementById("meteo").innerText = "Légère pluie";
         document.getElementById("icon-meteo").innerHTML = `
-        <img src="img/Lune-Légère-Pluie.ico" alt="Lune-Légère-Pluie.ico">
+        <img src="img/Soleil-Légère-Pluie.ico" alt="Soleil-Légère-Pluie.ico">
         <p class="text-center" id="meteo">Légère pluie</p>
         `;
       } else if (json.list[0].weather[0].description == "légère pluie") {
         document.getElementById("meteo").innerText = "Légère pluie";
         document.getElementById("icon-meteo").innerHTML = `
-        <img src="img/Soleil-Légère-Pluie.ico" alt="Soleil-Légère-Pluie.ico">
+        <img src="img/Lune-Légère-Pluie.ico" alt="Lune-Légère-Pluie.ico">
         <p class="text-center" id="meteo">Légère pluie</p>
         `;
       }
