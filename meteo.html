@@ -25,13 +25,52 @@
 
 <body>
   <header>
+    <div class="logo">La Météo</div>
+    <div class="burger" id="burger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <button onclick="recupererDonneesMeteo('rouen', 0);">Rouen</button>
+      <button onclick="recupererDonneesMeteo('caen', 0);">Caen</button>
+      <button onclick="recupererDonneesMeteo('paris', 0);">Paris</button>
+    </nav>
+    <!-- <a href="#" id="openBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
+    <div id="monMenuBurger" class="menuBurger bg-danger">
+      <a id="closeBtn" href="#" class="close">X</a>
+      <ul>
+        <li>Rouen</li>
+        <li>Paris</li>
+        <li>Caen</li>
+      </ul>
+    </div> -->
+    <!-- <div id="monMenuBurger" class="menuBurger bg-danger">
+      <a id="closeBtn" href="#" class="close">X</a>
+      <ul>
+        <li>Rouen</li>
+        <li>Paris</li>
+        <li>Caen</li>
+      </ul>
+    </div>
+    <a href="#" id="openBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </a> -->
+  </header>
+  <div>
     <div class="d-flex justify-content-center">
       <i class="bi bi-geo-alt fs-1" id="localisation">Localisation</i>
     </div>
     <div class="d-flex justify-content-center">
       <p id="date">Date</p>
     </div>
-  </header>
+  </div>
 
   <main>
     <div class="d-flex justify-content-center align-items-center">
@@ -61,8 +100,7 @@
       </div>
     </div>
     <div class="chart-container mb-3">
-      <div>
-        <canvas id="meteoChart"></canvas>
+      <div id="canvas">
       </div>
       <p class="text-center m-3 taille-texte">
         Vous pouvez visualiser la météo des jours suivants plus en détails en

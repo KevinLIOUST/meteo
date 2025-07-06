@@ -1,11 +1,143 @@
 /* Police décriture */
-@import url("https://fonts.googleapis.com/css2?family=Delius&family=Delius+Swash+Caps&family=Delius+Unicase:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Delius&family=Delius+Swash+Caps&family=Delius+Unicase:wght@400;700&display=swap');
 
 /* La même police d'écriture pour toute la page */
 body {
   font-family: Delius;
   background-color: rgb(255, 255, 255);
 }
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #b795ee;
+  color: white;
+}
+
+.logo {
+  font-size: 1.5rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #9912f3;
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.burger span {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+/* Version mobile : iPhone SE */
+@media screen and (max-width: 375px) and (min-width: 375px) and (max-height: 667px) and (min-height: 667px) {
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background-color: #b795ee;
+    flex-direction: column;
+    width: 200px;
+    display: none;
+    padding: 20px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .burger {
+    display: flex;
+  }
+}
+
+/* Class pour mon menu burger
+.menuBurger {
+  height: 100%;
+  width: 250px;
+  position: fixed; */
+
+/* z-index = 1 pour dire que le menu burger ne soit pas collé sur la page HTML */
+/* z-index: 1; */
+
+/* Pour être directement au sommet de notre page */
+/* top: 0; */
+
+/* Après avoir fermé le menu, l'élément est bien en dehors de la page */
+/* left: -250px;
+  background-color: rgb(136, 138, 198);
+  padding-top: 60px; */
+
+/* Un petit effet visuel pour ouvrir et fermer le menu burger */
+/* transition: left 0.5s ease;
+} */
+
+/* Les liens dans le menu burger */
+/* .menuBurger a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: rgb(156, 156, 165);
+  display: block;
+  transition: 0.3s;
+} */
+
+/* Quand on passe la souris dessus */
+/* .menuBurger a:hover {
+  color: rgb(138, 85, 236);
+} */
+
+/* Pour le design du menu burger */
+/* .menuBurger ul { */
+/* Enlever le style des listes */
+/* list-style-type: none;
+
+  padding: 0;
+  margin: 0;
+} */
+
+/* Pour activer le menu burger */
+/* .menuBurger.active { */
+/* Pour glisser vers l'écran */
+/* left: 0; */
+/* } */
+
+/* Pour fermer le menu burger */
+/* .menuBurger .close {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+} */
+
+/* Icône du menu burger */
+/* .burger-icon span {
+  display: block;
+  width: 35px;
+  height: 5px;
+  background-color: rgb(138, 85, 236);
+  margin: 6px 0;
+} */
 
 /* Taille du texte pour la température du jour */
 .taille-texte-temperature {
