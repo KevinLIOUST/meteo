@@ -80,19 +80,16 @@ header {
 /* Version mobile : Google Pixel 8a */
 @media screen and (max-width: 768px) {
   .nav-links {
-    display: none;
     position: absolute;
-    top: 60px;
-    right: 20px;
-    flex-direction: column;
+    top: 70px;
+    right: 0;
     background-color: rgb(113, 114, 200);
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    flex-direction: column;
     width: 200px;
     height: 100%;
-    padding: 15px;
+    display: none;
+    padding: 20px;
     overflow-y: auto;
-    z-index: 1;
   }
 
   .nav-links.active {
