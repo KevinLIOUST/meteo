@@ -78,7 +78,9 @@ header {
   .nav-links {
     position: absolute;
     top: 70px;
-    right: 0;
+    right: 20;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
     background-color: rgb(113, 114, 200);
     flex-direction: column;
     width: 200px;
@@ -86,6 +88,7 @@ header {
     display: none;
     padding: 20px;
     overflow-y: auto;
+    z-index: 1;
   }
 
   .nav-links.active {
@@ -94,6 +97,8 @@ header {
 
   .burger {
     display: flex;
+    flex-direction: column;
+    cursor: pointer;
   }
 }
 
