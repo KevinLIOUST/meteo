@@ -86,7 +86,7 @@ header {
     background-color: rgb(113, 114, 200);
     flex-direction: column;
     width: 200px;
-    height: 100%;
+    height: 50%;
     display: none;
     padding: 20px;
     overflow-y: auto;
