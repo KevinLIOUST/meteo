@@ -65,7 +65,7 @@ header {
   }
 
   /* Version mobile : Google Pixel 8a */
-@media screen and (max-width: 1080px) and (min-width: 1080px) and (max-height: 2400px) and (min-height: 2400px) {
+@media screen and (max-width: 450px) and (min-width: 450px) and (max-height: 900px) and (min-height: 900px) {
   .nav-links {
     position: absolute;
     top: 70px;
