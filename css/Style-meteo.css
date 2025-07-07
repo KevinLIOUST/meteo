@@ -64,6 +64,21 @@ header {
     overflow-y: auto;
   }
 
+  /* Version mobile : Google Pixel 8a */
+@media screen and (max-width: 1080px) and (min-width: 1080px) and (max-height: 2400px) and (min-height: 2400px) {
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background-color: rgb(113, 114, 200);
+    flex-direction: column;
+    width: 200px;
+    height: 100%;
+    display: none;
+    padding: 20px;
+    overflow-y: auto;
+  }
+
   .nav-links.active {
     display: flex;
   }
