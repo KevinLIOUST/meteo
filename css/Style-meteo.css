@@ -141,7 +141,7 @@ header {
 
 /* Taille du texte pour la température du jour */
 .taille-texte-temperature {
-  font-size: 60px;
+  font-size: 55px;
 }
 
 /* Pour les informations en détails de la météo */
@@ -235,7 +235,8 @@ header {
 
 /* Taille du texte dans le bouton plus taille du bouton */
 .taille-texte-btn {
-  width: 110px;
+  width: 75px;
+  height: 7px;
   font-size: 0.7rem;
 }
 
