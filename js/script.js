@@ -1,4 +1,4 @@
-let tabVilles = ["rouen", "caen", "paris", "havre", "honfleur", "lisieux", "bernay", "pont-audemer"];
+let tabVilles = ["rouen", "caen", "paris", "havre", "honfleur", "lisieux", "bernay", "pont-audemer", "etretat"];
 let tabJoursSemaine = [
   "lundi",
   "mardi",
