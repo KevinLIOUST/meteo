@@ -1,4 +1,4 @@
-let tabVilles = ["rouen", "caen", "paris", "havre", "honfleur", "lisieux", "bernay", "pont-audemer", "etretat", "fecamp", "dieppe", "ouistreham", "sainte-adresse", "marseille", "gruchet-le-valasse", "versailles", "creteil", "villejuif", "melun", "lille", "arras", "douai", "saint-romain-de-colbosc", "amiens"];
+let tabVilles = ["rouen", "caen", "paris", "havre", "honfleur", "lisieux", "bernay", "pont-audemer", "etretat", "fécamp", "dieppe", "ouistreham", "sainte-adresse", "marseille", "gruchet-le-valasse", "versailles", "creteil", "villejuif", "melun", "lille", "arras", "douai", "saint-romain-de-colbosc", "amiens", "corbie", "poix-de-picardie", "saint-roch", "morgny", "serqueux", "abancourt", "vieux-manoir", "longuerue", "achiet-le-grand", "bréauté", "beuzeville", "etainhus", "saint-laurent-de-brévedent", "gonfreville", "montivilliers", "harfleur", "octeville-sur-mer", "yvetot"];
 tabVilles.sort();
 let tabJoursSemaine = [
   "lundi",
