@@ -1,4 +1,4 @@
-let tabVilles = ["rouen", "caen", "paris", "havre", "honfleur", "lisieux", "bernay", "pont-audemer", "etretat", "fecamp", "dieppe", "Ouistreham", "sainte-adresse", "Ouistreham", "Ouistreham", "Ouistreham", "Ouistreham", "Ouistreham", "Ouistreham", "Ouistreham", "Ouistreham", "Ouistreham"];
+let tabVilles = ["rouen", "caen", "paris", "havre", "honfleur", "lisieux", "bernay", "pont-audemer", "etretat", "fecamp", "dieppe", "ouistreham", "sainte-adresse", "marseille", "gruchet-le-valasse", "versailles", "creteil", "villejuif", "melun", "lille", "arras", "douai", "saint-romain-de-colbosc", "amiens"];
 tabVilles.sort();
 let tabJoursSemaine = [
   "lundi",
