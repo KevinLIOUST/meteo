@@ -48,6 +48,7 @@ let tabJoursSemaine = [
 // openBtn.onclick = openNav();
 // closeBtn.onclick = closeNav();
 
+// Pour le menu burger
 const burger = document.getElementById('burger');
 const navLinks = document.getElementById('navLinks');
 
