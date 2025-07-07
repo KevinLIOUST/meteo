@@ -70,25 +70,29 @@ header {
 
   .burger {
     display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    margin-left: auto;
   }
 }
 
 /* Version mobile : Google Pixel 8a */
-@media screen and (max-width: 412px) and (min-width: 412px) and (max-height: 915px) and (min-height: 915px) {
+@media screen and (max-width: 768px) {
   .nav-links {
+    display: none;
     position: absolute;
-    top: 70px;
-    right: 20;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    background-color: rgb(113, 114, 200);
+    top: 60px;
+    right: 20px;
     flex-direction: column;
+    background-color: rgb(113, 114, 200);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     width: 200px;
     height: 100%;
-    display: none;
-    padding: 20px;
+    padding: 15px;
     overflow-y: auto;
-    z-index: 1;
+    z-index: 99;
   }
 
   .nav-links.active {
