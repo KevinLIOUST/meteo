@@ -1,4 +1,5 @@
-let tabVilles = ["rouen", "caen", "paris", "havre", "honfleur", "lisieux", "bernay", "pont-audemer", "etretat"];
+let tabVilles = ["rouen", "caen", "paris", "havre", "honfleur", "lisieux", "bernay", "pont-audemer", "etretat", "fecamp", "dieppe", "Ouistreham", "sainte-adresse", "Ouistreham", "Ouistreham", "Ouistreham", "Ouistreham", "Ouistreham", "Ouistreham", "Ouistreham", "Ouistreham", "Ouistreham"];
+tabVilles.sort();
 let tabJoursSemaine = [
   "lundi",
   "mardi",

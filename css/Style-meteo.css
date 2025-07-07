@@ -58,8 +58,10 @@ header {
     background-color: rgb(113, 114, 200);
     flex-direction: column;
     width: 200px;
+    height: 100%;
     display: none;
     padding: 20px;
+    overflow-y: auto;
   }
 
   .nav-links.active {
@@ -141,7 +143,7 @@ header {
 
 /* Taille du texte pour la température du jour */
 .taille-texte-temperature {
-  font-size: 55px;
+  font-size: 45px;
 }
 
 /* Pour les informations en détails de la météo */
@@ -221,6 +223,11 @@ header {
   height: auto;
   background-color: rgb(161, 162, 233);
   font-size: 0.8rem;
+}
+
+/* La couleur du bouton d'acceuil du menu burger */
+.colorBtnAcceuil {
+  background-color: rgb(127, 77, 156);
 }
 
 /* Quand on passe la souris sur le boutons */
