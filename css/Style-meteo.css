@@ -12,7 +12,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: #b795ee;
+  background-color: rgb(113, 114, 200);
   color: white;
 }
 
@@ -32,7 +32,7 @@ header {
 }
 
 .nav-links a:hover {
-  color: #9912f3;
+  color: rgb(57, 59, 111);
 }
 
 .burger {
@@ -55,7 +55,7 @@ header {
     position: absolute;
     top: 70px;
     right: 0;
-    background-color: #b795ee;
+    background-color: rgb(113, 114, 200);
     flex-direction: column;
     width: 200px;
     display: none;

@@ -388,7 +388,7 @@ function recupererDonneesMeteo(ville, indice) {
         <button
           type="button"
           class="d-flex justify-content-center btn colorBtn rounded-4 p-3 ms-1 mx-1 text-white"
-        onclick="recupererDonneesMeteo(${json.city.name.toLowerCase()}, ${i}); ${console.log(ville)};">
+        onclick="recupererDonneesMeteo('${ville}', ${i}); ${console.log(ville)};">
           <div>
             <p class="taille-texte-btn">${afficherJoursSemaine()[indiceBtn]}</p>
             ${createBaliseI(i)}
