@@ -92,6 +92,13 @@ header {
     overflow-y: auto;
   }
 
+  .searchBar {
+    background-color: rgb(229, 187, 233);
+    border: 3px solid rgb(229, 187, 233);
+    border-radius: 8px;
+    color: black;
+  }
+
   .nav-links.active {
     display: flex;
   }
@@ -305,7 +312,8 @@ header {
 .wrapper {
   width: auto;
   height: auto;
-  border: 1px solid #ddd;
+  border: 3px solid rgb(127, 77, 156);
+  border-radius: 8px;
   display: flex;
   overflow-x: auto;
 }

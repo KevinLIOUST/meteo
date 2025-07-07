@@ -32,8 +32,15 @@
       <span></span>
     </div>
     <nav class="nav-links shadow" id="navLinks">
-      <button class="btn colorBtn colorBtnAcceuil" onclick="window.location.href = 'index.html';">Revenir à
-        l'acceuil</button>
+      <div class="d-block">
+        <button class="btn colorBtn colorBtnAcceuil w-100 mb-4" onclick="window.location.href = 'index.html';">Revenir à
+          l'acceuil</button>
+        <input id="search" class="searchBar w-100" type="search" placeholder="Rechercher une ville..."
+          onkeyup="filtrer()">
+      </div>
+      <div class="d-block" id="navLinksVilles">
+
+      </div>
       <!-- <button class="btn colorBtn" onclick="recupererDonneesMeteo('rouen', 0);">Rouen</button>
       <button class="btn colorBtn" onclick="recupererDonneesMeteo('caen', 0);">Caen</button>
       <button class="btn colorBtn" onclick="recupererDonneesMeteo('paris', 0);">Paris</button> -->

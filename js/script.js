@@ -58,10 +58,35 @@ burger.addEventListener('click', () => {
 
 // Ajout des boutons des villes de manière dynamique
 tabVilles.forEach(ville => {
-  document.getElementById("navLinks").innerHTML += `
-  <button class="btn colorBtn" onclick="recupererDonneesMeteo('${ville}', 0);">${ville}</button>
+  document.getElementById("navLinksVilles").innerHTML += `
+  <button class="btn colorBtn w-100 flex-wrap mb-3" onclick="recupererDonneesMeteo('${ville}', 0);">${ville}</button>
   `;
 });
+
+// Fonction pour retourner le nouveau tableau contenant les villes avec la chaine de caractères correspondante présente dans ce mot là
+function filtreTexte(tableau, requete) {
+  return tableau.filter(function (el) {
+    return el.toLowerCase().indexOf(requete.toLowerCase()) !== -1;
+  });
+}
+
+// Fonction pour filtrer le tableau des villes pour chercher la ville correspondante pour l'utilisateur
+function filtrer() {
+
+  let filtre = document.getElementById("search").value;
+  console.log(filtre);
+
+  let newTabVilles = filtreTexte(tabVilles, filtre);
+  console.log(newTabVilles);
+
+  document.getElementById("navLinksVilles").innerHTML = ``;
+
+  newTabVilles.forEach(ville => {
+    document.getElementById("navLinksVilles").innerHTML += `
+  <button class="btn colorBtn w-100 flex-wrap mb-3" onclick="recupererDonneesMeteo('${ville}', 0);">${ville}</button>
+  `;
+  });
+}
 
 
 // Fonction qui permet d'afficher les jours de la semaine en temps réel
@@ -415,7 +440,7 @@ function recupererDonneesMeteo(ville, indice) {
         document.getElementById("btns-jour").innerHTML += `
         <button
           type="button"
-          class="d-flex justify-content-center btn colorBtn rounded-4 p-3 ms-1 mx-1 text-white"
+          class="d-flex justify-content-center btn colorBtn rounded-4 p-3 m-2 text-white"
         onclick="recupererDonneesMeteo('${ville}', ${i}); ${console.log(ville)};">
           <div>
             <p class="taille-texte-btn">${afficherJoursSemaine()[indiceBtn]}</p>
