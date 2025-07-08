@@ -130,6 +130,41 @@ function afficherJoursSemaine() {
 // Met à jour l'affichage toutes les secondes
 // setInterval(afficherJoursSemaine, 1000);
 
+// function coordonneesLatitude(pos) {
+//   let coord = pos.coords;
+
+//   let latitude = coord.latitude;
+
+//   document.getElementById("latitude").innerText = latitude;
+// }
+
+// function coordonneesLongitude(pos) {
+//   let coord = pos.coords;
+
+//   let longitude = coord.longitude;
+
+//   document.getElementById("longitude").innerText = longitude;
+// }
+
+// Fonction pour récupérer les données de géolocalisation
+function recupererDonneesGeolocalisation() {
+  let apiKey = "379a99adac6672b321cbd6175e3c6efd";
+  // let url = `http://api.openweathermap.org/geo/1.0/reverse?lat=${navigator.geolocation.getCurrentPosition(coordonneesLatitude)}&lon=${navigator.geolocation.getCurrentPosition(coordonneesLongitude)}&limit=1&appid=${apiKey}`;
+  let url = `http://api.openweathermap.org/geo/1.0/reverse?lat=49.496804&lon=0.1015808&limit=1&appid=379a99adac6672b321cbd6175e3c6efd`;
+  fetch(url)
+    .then((response) => {
+      return response.json();
+    })
+    .then((json) => {
+      console.log(json);
+      document.getElementById("localisation").innerText = json[0].name;
+      document.getElementById("latitude").innerText = json[0].lat;
+      document.getElementById("longitude").innerText = json[0].lon;
+    });
+}
+
+recupererDonneesGeolocalisation();
+
 // Fonction pour récupérer les données avec l'API pour la météo
 function recupererDonneesMeteo(ville, indice) {
   console.log(ville.toLowerCase());
@@ -145,7 +180,7 @@ function recupererDonneesMeteo(ville, indice) {
       console.log(json);
 
       // Vrai Affichage des données
-      document.getElementById("localisation").innerText = json.city.name;
+      // document.getElementById("localisation").innerText = json.city.name;
 
       document.getElementById("date").innerText = json.list[indice].dt_txt;
 
