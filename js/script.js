@@ -1,4 +1,47 @@
-let tabVilles = ["rouen", "caen", "paris", "havre", "honfleur", "lisieux", "bernay", "pont-audemer", "etretat", "fécamp", "dieppe", "ouistreham", "sainte-adresse", "marseille", "gruchet-le-valasse", "versailles", "creteil", "villejuif", "melun", "lille", "arras", "douai", "saint-romain-de-colbosc", "amiens", "corbie", "poix-de-picardie", "saint-roch", "morgny", "serqueux", "abancourt", "vieux-manoir", "longuerue", "achiet-le-grand", "bréauté", "beuzeville", "etainhus", "saint-laurent-de-brévedent", "gonfreville", "montivilliers", "harfleur", "octeville-sur-mer", "yvetot"];
+let tabVilles = [
+  ["rouen", "Rouen"],
+  ["caen", "Caen"],
+  ["paris", "Paris"],
+  ["havre", "Le Havre"],
+  ["honfleur", "Honfleur"],
+  ["lisieux", "Lisueux"],
+  ["bernay", "Bernay"],
+  ["pont-audemer", "Pont-Audemer"],
+  ["etretat", "Etretat"],
+  ["fécamp", "Fécamp"],
+  ["dieppe", "Dieppe"],
+  ["ouistreham", "Ouistreham"],
+  ["sainte-adresse", "Sainte-Adresse"],
+  ["marseille", "Marseille"],
+  ["gruchet-le-valasse", "Gruchet-Le-Valasse"],
+  ["versailles", "Versailles"],
+  ["creteil", "Créteil"],
+  ["villejuif", "Villejuif"],
+  ["melun", "Melun"],
+  ["lille", "Lille"],
+  ["arras", "Arras"],
+  ["douai", "Douai"],
+  ["saint-romain-de-colbosc", "Saint-Romain-De-Colbosc"],
+  ["amiens", "Amiens"],
+  ["corbie", "Corbie"],
+  ["poix-de-picardie", "Poix-De-Picardie"],
+  ["saint-roch", "Saint-Roch"],
+  ["morgny", "Morgny"],
+  ["serqueux", "Serqueux"],
+  ["abancourt", "Abancourt"],
+  ["vieux-manoir", "Vieux-Manoir"],
+  ["longuerue", "Longuerue"],
+  ["achiet-le-grand", "Achiet-Le-Grand"],
+  ["bréauté", "Bréauté"],
+  ["beuzeville", "Beuzeville"],
+  ["etainhus", "Etainhus"],
+  ["saint-laurent-de-brévedent", "Saint-Laurent-De-Brévedent"],
+  ["gonfreville", "Gonfreville"],
+  ["montivilliers", "Montivilliers"],
+  ["harfleur", "Harfleur"],
+  ["octeville-sur-mer", "Octeville-Sur-Mer"],
+  ["yvetot", "Yvetot"]
+];
 tabVilles.sort();
 let tabJoursSemaine = [
   "lundi",
@@ -59,7 +102,7 @@ burger.addEventListener('click', () => {
 // Ajout des boutons des villes de manière dynamique
 tabVilles.forEach(ville => {
   document.getElementById("navLinksVilles").innerHTML += `
-  <button class="btn colorBtn w-100 flex-wrap mb-3" onclick="recupererDonneesMeteo('${ville}', 0);">${ville}</button>
+  <button class="btn colorBtn w-100 flex-wrap mb-3" onclick="recupererDonneesMeteo('${ville[0]}', 0);">${ville[0]}</button>
   `;
 });
 
@@ -83,7 +126,7 @@ function filtrer() {
 
   newTabVilles.forEach(ville => {
     document.getElementById("navLinksVilles").innerHTML += `
-  <button class="btn colorBtn w-100 flex-wrap mb-3" onclick="recupererDonneesMeteo('${ville}', 0);">${ville}</button>
+  <button class="btn colorBtn w-100 flex-wrap mb-3" onclick="recupererDonneesMeteo('${ville[0]}', 0);">${ville[0]}</button>
   `;
   });
 }
@@ -130,27 +173,15 @@ function afficherJoursSemaine() {
 // Met à jour l'affichage toutes les secondes
 // setInterval(afficherJoursSemaine, 1000);
 
-// function coordonneesLatitude(pos) {
-//   let coord = pos.coords;
+function coordonnees(pos) {
+  let coord = pos.coords;
 
-//   let latitude = coord.latitude;
+  let latitude = coord.latitude;
+  let longitude = coord.longitude;
 
-//   document.getElementById("latitude").innerText = latitude;
-// }
-
-// function coordonneesLongitude(pos) {
-//   let coord = pos.coords;
-
-//   let longitude = coord.longitude;
-
-//   document.getElementById("longitude").innerText = longitude;
-// }
-
-// Fonction pour récupérer les données de géolocalisation
-function recupererDonneesGeolocalisation() {
   let apiKey = "379a99adac6672b321cbd6175e3c6efd";
   // let url = `http://api.openweathermap.org/geo/1.0/reverse?lat=${navigator.geolocation.getCurrentPosition(coordonneesLatitude)}&lon=${navigator.geolocation.getCurrentPosition(coordonneesLongitude)}&limit=1&appid=${apiKey}`;
-  let url = `http://api.openweathermap.org/geo/1.0/reverse?lat=49.496804&lon=0.1015808&limit=1&appid=379a99adac6672b321cbd6175e3c6efd`;
+  let url = `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKey}`;
   fetch(url)
     .then((response) => {
       return response.json();
@@ -158,18 +189,45 @@ function recupererDonneesGeolocalisation() {
     .then((json) => {
       console.log(json);
       document.getElementById("localisation").innerText = json[0].name;
-      document.getElementById("latitude").innerText = json[0].lat;
-      document.getElementById("longitude").innerText = json[0].lon;
+      document.getElementById("latitude").innerText = latitude;
+      document.getElementById("longitude").innerText = longitude;
+      for (let i = 0; i < tabVilles.length; i++) {
+        if (tabVilles[i][1] == json[0].name) {
+          recupererDonneesMeteo(tabVilles[i][0], 0);
+        }
+      }
     });
 }
 
-recupererDonneesGeolocalisation();
+function showError(error) {
+  switch (error.code) {
+    case error.PERMISSION_DENIED:
+      alert("L'utilisateur a refusé la demande de géolocalisation.");
+      break;
+    case error.POSITION_UNAVAILABLE:
+      alert("L'emplacement de l'utilisateur n'est pas disponible.");
+      break;
+    case error.TIMEOUT:
+      alert("La demande de géolocalisation a expiré.");
+      break;
+    case error.UNKNOWN_ERROR:
+      alert("Une erreur inconnue s'est produite.");
+      break;
+  }
+}
+
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(coordonnees, showError);
+} else {
+  alert("La géolocalisation n'est pas supportée par ce navigateur.");
+  recupererDonneesMeteo("rouen", 0);
+}
 
 // Fonction pour récupérer les données avec l'API pour la météo
 function recupererDonneesMeteo(ville, indice) {
   console.log(ville.toLowerCase());
   let apiKey = "379a99adac6672b321cbd6175e3c6efd";
-  let url = `https://api.openweathermap.org/data/2.5/forecast?q=${ville.toLowerCase()}&appid=${apiKey}&lang=fr&units=metric`;
+  let url = `https://api.openweathermap.org/data/2.5/forecast?q=${ville.toLowerCase()},FR&appid=${apiKey}&lang=fr&units=metric`;
 
   fetch(url)
     .then((response) => {
@@ -180,7 +238,7 @@ function recupererDonneesMeteo(ville, indice) {
       console.log(json);
 
       // Vrai Affichage des données
-      // document.getElementById("localisation").innerText = json.city.name;
+      document.getElementById("localisation").innerText = json.city.name;
 
       document.getElementById("date").innerText = json.list[indice].dt_txt;
 
@@ -507,4 +565,4 @@ function recupererDonneesMeteo(ville, indice) {
       }
     });
 }
-recupererDonneesMeteo('rouen', 0);
+// recupererDonneesMeteo('rouen', 0);
