@@ -158,7 +158,7 @@ function afficherJoursSemaine() {
   }
 
   // On nettoie la console pour un affichage en temps réel
-  console.clear();
+  // console.clear();
 
   // Affichage des jours de la semaine
   // console.log("Jours de la semaine :");
@@ -171,7 +171,7 @@ function afficherJoursSemaine() {
 }
 
 // Met à jour l'affichage toutes les secondes
-setInterval(afficherJoursSemaine, 1000);
+// setInterval(afficherJoursSemaine, 1000);
 
 function coordonnees(pos) {
   let coord = pos.coords;
