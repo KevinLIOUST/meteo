@@ -182,12 +182,7 @@ function coordonnees(pos) {
   let apiKey = "379a99adac6672b321cbd6175e3c6efd";
   // let url = `http://api.openweathermap.org/geo/1.0/reverse?lat=${navigator.geolocation.getCurrentPosition(coordonneesLatitude)}&lon=${navigator.geolocation.getCurrentPosition(coordonneesLongitude)}&limit=1&appid=${apiKey}`;
   let url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKey}`;
-  fetch(url, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
+  fetch(url)
     .then((response) => {
       return response.json();
     })
