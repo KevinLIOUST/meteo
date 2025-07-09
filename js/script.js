@@ -109,7 +109,7 @@ tabVilles.forEach(ville => {
 // Fonction pour retourner le nouveau tableau contenant les villes avec la chaine de caractères correspondante présente dans ce mot là
 function filtreTexte(tableau, requete) {
   return tableau.filter(function (el) {
-    return el.toLowerCase().indexOf(requete.toLowerCase()) !== -1;
+    return el[0].toLowerCase().includes(document.getElementById("search").value);
   });
 }
 
@@ -158,7 +158,7 @@ function afficherJoursSemaine() {
   }
 
   // On nettoie la console pour un affichage en temps réel
-  // console.clear();
+  console.clear();
 
   // Affichage des jours de la semaine
   // console.log("Jours de la semaine :");
@@ -171,7 +171,7 @@ function afficherJoursSemaine() {
 }
 
 // Met à jour l'affichage toutes les secondes
-// setInterval(afficherJoursSemaine, 1000);
+setInterval(afficherJoursSemaine, 1000);
 
 function coordonnees(pos) {
   let coord = pos.coords;
@@ -181,7 +181,7 @@ function coordonnees(pos) {
 
   let apiKey = "379a99adac6672b321cbd6175e3c6efd";
   // let url = `http://api.openweathermap.org/geo/1.0/reverse?lat=${navigator.geolocation.getCurrentPosition(coordonneesLatitude)}&lon=${navigator.geolocation.getCurrentPosition(coordonneesLongitude)}&limit=1&appid=${apiKey}`;
-  let url = `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKey}`;
+  let url = `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude.toFixed(10)}&lon=${longitude.toFixed(10)}&limit=1&appid=${apiKey}`;
   fetch(url)
     .then((response) => {
       return response.json();
@@ -189,8 +189,8 @@ function coordonnees(pos) {
     .then((json) => {
       console.log(json);
       document.getElementById("localisation").innerText = json[0].name;
-      document.getElementById("latitude").innerText = latitude;
-      document.getElementById("longitude").innerText = longitude;
+      document.getElementById("latitudeActuelle").innerText = latitude.toFixed(10);
+      document.getElementById("longitudeActuelle").innerText = longitude.toFixed(10);
       for (let i = 0; i < tabVilles.length; i++) {
         if (tabVilles[i][1] == json[0].name) {
           recupererDonneesMeteo(tabVilles[i][0], 0);
@@ -239,6 +239,9 @@ function recupererDonneesMeteo(ville, indice) {
 
       // Vrai Affichage des données
       document.getElementById("localisation").innerText = json.city.name;
+
+      document.getElementById("latitude").innerText = json.city.coord.lat.toFixed(10);
+      document.getElementById("longitude").innerText = json.city.coord.lon.toFixed(10);
 
       document.getElementById("date").innerText = json.list[indice].dt_txt;
 
