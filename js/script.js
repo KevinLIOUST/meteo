@@ -109,14 +109,14 @@ tabVilles.forEach(ville => {
 // Fonction pour retourner le nouveau tableau contenant les villes avec la chaine de caractères correspondante présente dans ce mot là
 function filtreTexte(tableau, requete) {
   return tableau.filter(function (el) {
-    return el[0].toLowerCase().includes(document.getElementById("search").value);
+    return el[0].toLowerCase().includes(document.getElementById("search").value.toLowerCase());
   });
 }
 
 // Fonction pour filtrer le tableau des villes pour chercher la ville correspondante pour l'utilisateur
 function filtrer() {
 
-  let filtre = document.getElementById("search").value;
+  let filtre = document.getElementById("search").value.toLowerCase();
   console.log(filtre);
 
   let newTabVilles = filtreTexte(tabVilles, filtre);
