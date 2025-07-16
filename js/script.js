@@ -128,12 +128,6 @@ function addFavorites() {
 
   let villeDejaPresente = false;
 
-  if (!recupLocalStorage.includes(newCity) && recupLocalStorage.length <= 10) {
-    recupLocalStorage.push(newCity);
-    let stringOK = JSON.stringify(recupLocalStorage);
-    localStorage.setItem('villes', stringOK);
-  }
-
   for (let i = 0; i < recupLocalStorage.length; i++) {
     if (newCity == recupLocalStorage[i]) {
       villeDejaPresente = true;
@@ -142,7 +136,7 @@ function addFavorites() {
 
   if (villeDejaPresente == true) {
     console.log("Cette ville est déjà présente dans vos favoris ! :)");
-  } else if (villeDejaPresente == false && recupLocalStorage.length >= 10) {
+  } else if (villeDejaPresente == false && recupLocalStorage.length > 10) {
     console.log("Il y a déjà le nombre max de favoris !!!! :) :) :) :)");
   } else {
     console.log(newCity);
@@ -152,6 +146,12 @@ function addFavorites() {
             <button class="btn bg-danger w-25 flex-wrap mb-3 mx-3 text-white">Supprimer</button>
           </div>
           `;
+  }
+
+  if (!recupLocalStorage.includes(newCity) && recupLocalStorage.length < 10) {
+    recupLocalStorage.push(newCity);
+    let stringOK = JSON.stringify(recupLocalStorage);
+    localStorage.setItem('villes', stringOK);
   }
   afficherFavorites();
 }
@@ -176,8 +176,9 @@ function afficherFavorites() {
 afficherFavorites();
 
 // Fonction pour supprimer les favoris
-function supprimerFavoris() {
-
+function supprimerFavoris(ville) {
+  let recupLocalStorage = localStorage.getItem('villes');
+  recupLocalStorage = JSON.parse(recupLocalStorage);
 }
 
 
