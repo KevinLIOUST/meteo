@@ -52,44 +52,6 @@ let tabJoursSemaine = [
   "samedi",
   "dimanche",
 ];
-// let tabMeteos = [
-//   "ciel dégagé",
-//   "peu nuageux",
-//   "partiellement nuageux",
-//   "nuageux",
-//   "couvert",
-//   "légère pluie",
-// ];
-// let tabJourNuit = ["Jour", "Nuit"];
-
-// Fonction pour consoleloguer l'url
-// function consoleloguerURL() {
-//   fetch(url)
-//     .then((response) => response.json())
-//     .then((data) => {
-//       console.log(data);
-//     });
-// }
-// consoleloguerURL();
-
-// // Pour le menu burger avec toutes les villes à traiter pour la météo
-// let menuBurger = document.getElementById("monMenuBurger");
-// let closeBtn = document.getElementById("closeBtn");
-// let openBtn = document.getElementById("openBtn");
-
-// // Fonction pour ouvrir le menu burger
-// function openNav() {
-//   menuBurger.classList.add("active");
-// }
-
-// // Fonction pour fermer le menu burger
-// function closeNav() {
-//   menuBurger.classList.remove("active");
-// }
-
-// // Les événements pour ouvrir et fermer le menu burger
-// openBtn.onclick = openNav();
-// closeBtn.onclick = closeNav();
 
 // Pour le menu burger
 const burger = document.getElementById('burger');
@@ -131,6 +93,93 @@ function filtrer() {
   });
 }
 
+let recupLocalStorage = localStorage.getItem('villes');
+recupLocalStorage = JSON.parse(recupLocalStorage);
+
+if (recupLocalStorage != null) {
+  for (let i = 0; i < recupLocalStorage.length; i++) {
+    console.log(recupLocalStorage[i]);
+    document.getElementById("favorites").innerHTML += `
+    <div class="d-block">
+      <button class="btn colorBtn w-50 flex-wrap mb-3 ms-3" onclick="recupererDonneesMeteo('${recupLocalStorage[i]}', 0);">${recupLocalStorage[i]}</button>
+      <button class="btn bg-danger w-25 flex-wrap mb-3 mx-3 text-white">Supprimer</button>
+    </div>
+    `;
+  }
+}
+
+function addFavorites() {
+  // On récupère le nom de la ville
+  let newCity = document.getElementById("localisation").innerText;
+  console.log(newCity);
+
+  // Créer une clé / variable dans local storage
+  // localStorage.setItem('TOTO', newCity);
+
+  // Récupérer la valeur dans le local storage
+  let recupLocalStorage = localStorage.getItem('villes');
+  console.log(recupLocalStorage);
+
+  if (recupLocalStorage === null) {
+    recupLocalStorage = [];
+  } else {
+    recupLocalStorage = JSON.parse(recupLocalStorage);
+  }
+
+  let villeDejaPresente = false;
+
+  if (!recupLocalStorage.includes(newCity) && recupLocalStorage.length <= 10) {
+    recupLocalStorage.push(newCity);
+    let stringOK = JSON.stringify(recupLocalStorage);
+    localStorage.setItem('villes', stringOK);
+  }
+
+  for (let i = 0; i < recupLocalStorage.length; i++) {
+    if (newCity == recupLocalStorage[i]) {
+      villeDejaPresente = true;
+    }
+  }
+
+  if (villeDejaPresente == true) {
+    console.log("Cette ville est déjà présente dans vos favoris ! :)");
+  } else if (villeDejaPresente == false && recupLocalStorage.length >= 10) {
+    console.log("Il y a déjà le nombre max de favoris !!!! :) :) :) :)");
+  } else {
+    console.log(newCity);
+    document.getElementById("favorites").innerHTML += `
+          <div class="d-block">
+            <button class="btn colorBtn w-50 flex-wrap mb-3 ms-3" onclick="recupererDonneesMeteo('${newCity}', 0);">${newCity}</button>
+            <button class="btn bg-danger w-25 flex-wrap mb-3 mx-3 text-white">Supprimer</button>
+          </div>
+          `;
+  }
+  afficherFavorites();
+}
+
+function afficherFavorites() {
+  document.getElementById("favorites").innerHTML = ``;
+
+  let recupLocalStorage = localStorage.getItem('villes');
+
+  if (recupLocalStorage != null) {
+    recupLocalStorage = JSON.parse(recupLocalStorage);
+    recupLocalStorage.forEach(city => {
+      document.getElementById("favorites").innerHTML += `
+          <div class="d-block">
+            <button class="btn colorBtn w-50 flex-wrap mb-3 ms-3" onclick="recupererDonneesMeteo('${city}', 0);">${city}</button>
+            <button class="btn bg-danger w-25 flex-wrap mb-3 mx-3 text-white">Supprimer</button>
+          </div>
+          `;
+    })
+  }
+}
+afficherFavorites();
+
+// Fonction pour supprimer les favoris
+function supprimerFavoris() {
+
+}
+
 
 // Fonction qui permet d'afficher les jours de la semaine en temps réel
 function afficherJoursSemaine() {
@@ -158,20 +207,14 @@ function afficherJoursSemaine() {
   }
 
   // On nettoie la console pour un affichage en temps réel
-  console.clear();
-
-  // Affichage des jours de la semaine
-  // console.log("Jours de la semaine :");
-  // joursAffiches.forEach((jour, index) => {
-  //   console.log(`Jour ${index + 1}: ${jour}`);
-  // });
+  // console.clear();
 
   // On retourne le nouveau tableau à afficher.
   return joursAffiches;
 }
 
 // Met à jour l'affichage toutes les secondes
-setInterval(afficherJoursSemaine, 1000);
+// setInterval(afficherJoursSemaine, 1000);
 
 function coordonnees(pos) {
   let coord = pos.coords;
@@ -415,21 +458,6 @@ function recupererDonneesMeteo(ville, indice) {
 
       graphInit();
 
-      // Pour afficher les icônes sur les boutons en bas de page
-      // pour savoir en avance quel temps il fait pour les jours suivants à la même heure que maintenant
-      // let tabIconesBtn = [
-      //   "bi bi-sun",
-      //   "bi bi-moon",
-      //   "bi bi-cloud-drizzle",
-      //   "bi bi-cloud-lightning-rain",
-      //   "bi bi-cloud-rain-heavy",
-      //   "bi bi-cloud-sun",
-      //   "bi bi-cloud-moon",
-      //   "bi bi-cloud",
-      //   "bi bi-cloud-fog",
-      //   "bi bi-cloud-lightning"
-      // ];
-
       // Fonction pour créer une balise i avec l'icône correspondant au temps qu'il fait dans les jours suivants à la même heure que maintenant
       function createBaliseI(indice) {
         if (
@@ -568,4 +596,3 @@ function recupererDonneesMeteo(ville, indice) {
       }
     });
 }
-// recupererDonneesMeteo('rouen', 0);
